@@ -29,7 +29,7 @@ public class RoleService : IRoleService
         existingRole = new Role
         {
             RoleId = Guid.NewGuid(),
-            Name = request.Name
+            Name = request.Name.Trim().ToUpperInvariant()
         };
 
         _dbContext.Roles.Add(existingRole);
@@ -68,7 +68,7 @@ public class RoleService : IRoleService
             throw new InvalidOperationException("Role already exist");
         }
 
-        role.Name = request.Name;
+        role.Name = request.Name.Trim().ToUpperInvariant();
 
         await _dbContext.SaveChangesAsync();
     }

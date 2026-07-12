@@ -17,7 +17,7 @@ public class RoleController : ControllerBase
     }
 
     [HttpPost("create")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "ADMIN")]
     public async Task<IActionResult> CreateRole(CreateRoleRequestDto request)
     {
         await _roleService.CreateRoleAsync(request);
@@ -32,7 +32,7 @@ public class RoleController : ControllerBase
     }
 
     [HttpPut("update")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "ADMIN")]
     public async Task<IActionResult> UpdateRole(UpdateRoleRequestDto request)
     {
         await _roleService.UpdateRoleAsync(request);
@@ -40,7 +40,7 @@ public class RoleController : ControllerBase
     }
 
     [HttpDelete("delete")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "ADMIN")]
     public async Task<IActionResult> DeleteRole(DeleteRoleRequestDto request)
     {
         await _roleService.DeleteRoleAsync(request);
