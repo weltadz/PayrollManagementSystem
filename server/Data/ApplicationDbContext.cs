@@ -27,6 +27,18 @@ public class ApplicationDbContext : DbContext
             .HasForeignKey(e => e.DepartmentId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<Employee>()
+            .HasOne(e => e.Position)
+            .WithMany(p => p.Employees)
+            .HasForeignKey(e => e.PositionId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Employee>()
+            .HasOne(e => e.EmploymentType)
+            .WithMany(et => et.Employees)
+            .HasForeignKey(e => e.EmploymentTypeId)
+            .OnDelete(DeleteBehavior.Restrict);
+
         modelBuilder.Entity<EmployeeAllowance>()
             .Property(e => e.Amount)
             .HasPrecision(18, 2);
@@ -98,6 +110,18 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<PayrollDeduction>()
             .Property(e => e.Amount)
             .HasPrecision(18, 2);
+
+        modelBuilder.Entity<Department>()
+            .HasIndex(d => d.Name)
+            .IsUnique();
+
+        modelBuilder.Entity<Position>()
+            .HasIndex(p => p.Name)
+            .IsUnique();
+
+        modelBuilder.Entity<EmploymentType>()
+            .HasIndex(et => et.Name)
+            .IsUnique();
     }
 
     public DbSet<User> Users => Set<User>();
@@ -127,4 +151,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<PayrollAllowance> PayrollAllowances => Set<PayrollAllowance>();
 
     public DbSet<PayrollDeduction> PayrollDeductions => Set<PayrollDeduction>();
+
+    public DbSet<Position> Positions => Set<Position>();
+
+    public DbSet<EmploymentType> EmploymentTypes => Set<EmploymentType>();
 }

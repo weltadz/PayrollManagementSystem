@@ -2,11 +2,11 @@ namespace server.Model.Enums;
 
 public enum EmploymentStatus
 {
-    Probationary,
+    Active,
 
-    Regular,
+    Inactive,
 
-    Contractual,
+    Suspended,
 
     Resigned,
     

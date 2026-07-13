@@ -60,4 +60,14 @@ public class Employee
 
     // Navigation
     public User? User { get; set; }
+
+    public Guid PositionId { get; set;}
+
+    //Navigation
+    public Position Position { get; set;} = null!;
+
+    public Guid EmploymentTypeId { get; set;}
+
+    //Navigation
+    public EmploymentType EmploymentType { get; set;} = null!;
 }
