@@ -35,11 +35,11 @@ public class Employee
 
     public decimal BasicSalary { get; set; }
 
-    public SalaryType SalaryType { get; set;}
+    public string SalaryType { get; set;} = string.Empty;
 
-    public PayFrequency PayFrequency { get; set;}
+    public string PayFrequency { get; set;} = string.Empty;
 
-    public EmploymentStatus EmploymentStatus { get; set; }
+    public string EmploymentStatus { get; set; } = string.Empty;
 
     public bool IsActive { get; set; } = true;
 
