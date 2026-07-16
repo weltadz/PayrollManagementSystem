@@ -96,6 +96,6 @@ public class PositionService : IPositionService
         }
 
         _dbContext.Positions.Remove(existingPosition);
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync();    
     }
 }
