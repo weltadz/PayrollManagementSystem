@@ -39,6 +39,36 @@ public class ApplicationDbContext : DbContext
             .HasForeignKey(e => e.EmploymentTypeId)
             .OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<Employee>()
+            .HasOne(e => e.AttendanceStatus)
+            .WithMany(att => att.Employees)
+            .HasForeignKey(e => e.AttendanceStatusId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Employee>()
+            .HasOne(e => e.EmploymentStatus)
+            .WithMany(et => et.Employees)
+            .HasForeignKey(e => e.EmploymentStatusId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Employee>()
+            .HasOne(e => e.PayFrequency)
+            .WithMany(pf => pf.Employees)
+            .HasForeignKey(e => e.PayFrequencyId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Employee>()
+            .HasOne(e => e.PayrollStatus)
+            .WithMany(ps => ps.Employees)
+            .HasForeignKey(e => e.PayrollStatusId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<Employee>()
+            .HasOne(e => e.SalaryType)
+            .WithMany(st => st.Employees)
+            .HasForeignKey(e => e.SalaryTypeId)
+            .OnDelete(DeleteBehavior.Restrict);             
+
         modelBuilder.Entity<EmployeeAllowance>()
             .Property(e => e.Amount)
             .HasPrecision(18, 2);
@@ -96,6 +126,12 @@ public class ApplicationDbContext : DbContext
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Payroll>()
+            .HasOne(p => p.PayrollStatus)
+            .WithMany(ps => ps.Payrolls)
+            .HasForeignKey(p => p.PayrollStatusId)
+            .OnDelete(DeleteBehavior.Restrict);    
+
+        modelBuilder.Entity<Payroll>()
             .HasIndex(p => new
             {
                 p.EmployeeId,
@@ -122,6 +158,12 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<EmploymentType>()
             .HasIndex(et => et.Name)
             .IsUnique();
+
+        modelBuilder.Entity<Attendance>()
+            .HasOne(a => a.AttendanceStatus)
+            .WithMany(att => att.Attendances)
+            .HasForeignKey(a => a.AttendanceStatusId)
+            .OnDelete(DeleteBehavior.Restrict);    
     }
 
     public DbSet<User> Users => Set<User>();
@@ -155,4 +197,14 @@ public class ApplicationDbContext : DbContext
     public DbSet<Position> Positions => Set<Position>();
 
     public DbSet<EmploymentType> EmploymentTypes => Set<EmploymentType>();
+
+    public DbSet<AttendanceStatus> AttendanceStatuses => Set<AttendanceStatus>();
+
+    public DbSet<EmploymentStatus> EmploymentStatuses => Set<EmploymentStatus>();
+
+    public DbSet<PayFrequency> PayFrequencies => Set<PayFrequency>();
+
+    public DbSet<PayrollStatus> PayrollStatuses => Set<PayrollStatus>();
+
+    public DbSet<SalaryType> SalaryTypes => Set<SalaryType>();
 }

@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using server.Model.Enums;
 
 namespace server.Model;
 
@@ -21,7 +20,10 @@ public class Attendance
 
     public int UndertimeMinutes { get; set; }
 
-    public AttendanceStatus AttendanceStatus { get; set;}
+    public Guid AttendanceStatusId { get; set;}
+
+    //Navigation
+    public AttendanceStatus AttendanceStatus { get; set;} = null!;
 
     public Guid EmployeeId { get; set; }
 

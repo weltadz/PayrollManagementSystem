@@ -1,5 +1,3 @@
-using server.Model.Enums;
-
 namespace server.Model;
 
 public class Payroll
@@ -16,8 +14,6 @@ public class Payroll
 
     public decimal NetPay { get; set; }
 
-    public PayrollStatus PayrollStatus { get; set;} = PayrollStatus.Draft;
-
     public ICollection<PayrollAllowance> PayrollAllowances { get; set;} = new List<PayrollAllowance>();
 
     public ICollection<PayrollDeduction> PayrollDeductions { get; set;} = new List<PayrollDeduction>();
@@ -31,4 +27,9 @@ public class Payroll
 
     // Navigation
     public PayrollPeriod PayrollPeriod { get; set; } = null!;
+
+    public Guid PayrollStatusId { get; set;}
+
+    //Navigation
+    public PayrollStatus PayrollStatus { get; set;} = null!;
 }

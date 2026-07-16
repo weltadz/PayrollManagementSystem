@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using server.Model.Enums;
 
 namespace server.Model;
 
@@ -35,12 +34,6 @@ public class Employee
 
     public decimal BasicSalary { get; set; }
 
-    public string SalaryType { get; set;} = string.Empty;
-
-    public string PayFrequency { get; set;} = string.Empty;
-
-    public string EmploymentStatus { get; set; } = string.Empty;
-
     public bool IsActive { get; set; } = true;
 
     public ICollection<Attendance> Attendances { get; set;} = new List<Attendance>();
@@ -70,4 +63,29 @@ public class Employee
 
     //Navigation
     public EmploymentType EmploymentType { get; set;} = null!;
+
+    public Guid AttendanceStatusId {get; set;}
+
+    //Navigation
+    public AttendanceStatus AttendanceStatus { get; set;} = null!;
+
+    public Guid EmploymentStatusId { get; set;}
+
+    //Navigation
+    public EmploymentStatus EmploymentStatus { get; set;} = null!;
+
+    public Guid PayFrequencyId { get; set;}
+
+    //Navigation
+    public PayFrequency PayFrequency { get; set;} = null!;
+
+    public Guid PayrollStatusId { get; set;}
+
+    //Navigation
+    public PayrollStatus PayrollStatus { get; set;} = null!;
+
+    public Guid SalaryTypeId { get; set;}
+
+    //Navigation
+    public SalaryType SalaryType { get; set;} = null!;
 }
